@@ -1,76 +1,143 @@
-const database = [{
+const database = {
     
         
         colors: [
             {
             id: 1,
-            paintColor: "silver",
+            name: "silver",
+            price: 150
             },
             {
             id: 2,
-            paintColor: "Firebrick"
+            name: "Firebrick",
+            price: 150
             },
             {
             id: 3,
-            paintColor: "Spring Green"
+            name: "Spring Green",
+            price: 150
+            },
+            {
+            id: 4,
+            name: "Midnight Blue"
             }
 
-            
-            "Firebrick",
-            "Spring Green"
-        ]
-    },
-    {
-        interior: {
+        ],
+        
+    
+    
+        interior: [
+            {
             id: 1,
-            Fabric: [ 
-                "Beige Fbric",
-                "Charcoal Fabric",
-                "White Leather",
-                "Black Leather"
-            ]
+            fabric: "Beige Fbric", 
+            price: 150
+            },
+            {
+            id: 2,
+            fabric: "Charcoal fabric",
+            price: 150
+            },
+            {
+                id: 3,
+                fabric: "White Leather",
+                price: 150
+            },   
+            {
+                id: 4,
+                fabric: "Black Leather",
+                price: 150
+            }
+                
+            ],
+        
+        technology: [ 
+        {
+            id: 1,
+            packages: "Basic Package", //(basic sound system)
+            price: 150
         },
-        technology:{
-            id: 1,
-            packages: [
-                "Basic Package", //(basic sound system)
-                "Navigation Package", //(includes integrated navigation controls)
-                "Visibility Package", //(includes side abd rear caneras)
-                "Ultra Package" // (includes navigation and visibility packages)
-            ]
-    },
-        wheels: {
-            id: 1,
-            rimType: [
-                "17-inch Pair Radial",
-                "17-inch Pair Radial Black",
-                "18-inch Pair Spoke Silver",
-                "18-inch Pair Spoke Black"
-            ]
-
+        {
+            id: 2,
+            packages: "Navigation Package", //(includes integrated navigation controls)
+            price: 150
         },
-        customOrder: {
-            id: 1,
-            paintColorsId: 1,
-            interiorId: 1,
-            technologyId: 1,
-            wheelsId: 1 
+        {
+            id: 3,
+            packages: "Visibility Package", //(includes side abd rear caneras)
+            price: 150
+        },
+        {
+            id: 4,
+            packages: "Utility Package", // (includes navigation and visibility packages)
+            price: 150
         }
+            ],
+    
+        wheels: [
+        {
+            id: 1,
+            rimType: "17-inch Pair Radial",
+            price: 150
+        },
+        {
+            id: 2,
+            rimType: "17-inch Pair Radial Black",
+            price: 150
+        },
+        {
+            id: 3,
+            rimType: "18-inch Pair Spoke Silver",
+            price: 150
+        },
+        {
+            id: 4,
+            rimType: "18-inch Pair Spoke Black",
+            price: 150
+        }
+            ],
 
-        
-        
-    }]
-}]
+       
+        customOrders: [
+        {
+            id: 1,
+            interiorId: 2,
+            paintColorsId: 1,
+            technologyId: 3,
+            wheelsId: 4
+        },
+        {
+            id: 2,
+            interiorId: 2,
+            paintColorsId: 1,
+            technologyId: 3,
+            wheelsId: 4
+        },
+        {
+            id: 3,
+            technologyId: 3,
+            interiorId: 2,
+            paintColorsId: 1,
+            wheelsId: 4
+        }, 
+        {
+            id: 4,
+            wheelsId: 4,
+            technologyId: 3,
+            interiorId: 2,
+            paintColorsId: 1,
+        }
+            ]
+}
 
 
 
 
-export const getpaintColors = () => {
-    return database.paintColors.map(paintColors => ({...paintColors}))
+export const getPaintColors = () => {
+    return database.colors.map(colors => ({...colors}))
 }
 
 export const getInteriors= () => {
-    return database.interiors.map(interiors => ({...interiors}))
+    return database.interior.map(interiors => ({...interiors}))
 }
 
 export const getTechnology = () => {
@@ -79,4 +146,7 @@ export const getTechnology = () => {
 
 export const getWheels = () => {
     return database.wheels.map(wheels => ({...wheels}))
+}
+export const customOrders = () => {
+    return database.orders.map(wheels => ({...wheels}))
 }
