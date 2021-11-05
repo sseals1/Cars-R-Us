@@ -1,28 +1,35 @@
-import { getInteriors } from "./database.js"
+import { getInteriors, setInteriors } from "./database.js"
 
 const interiors = getInteriors()
 
 document.addEventListener(
     "change",
-    (event) => {
-        if (event.target.name === "interiors") {
-            window.alert(`You've chose ${interiors.name} for your primary color`)
+    (changeEvent) => {
+        if (changeEvent.target.id === "interiors") {
+            setInteriors(parseInt(changeEvent.target.value))
+            // window.alert(`You've chose ${interiors.name} for your primary color`)
         }
     }
 )
 
 export const interiorsFunction = () => {
-    let html = "<ul>"
-
+    let html = `<select id="interiors">`
+    html += `<option value="0">Select Interior...</option>`
+    
     // Use .map() for converting objects to <li> elements
     const listItems = interiors.map(interiorsObj => {
-        return `<li>
-            <input type="radio" name="interiors" value="${interiorsObj.id}" /> ${interiorsObj.fabric}
-        </li>`
+        return `
+       <option value=${interiorsObj.id}> ${interiorsObj.fabric}</option>
+             `
+        
+        
+        
+        
+        
     })
-
+    
     html += listItems.join("")
-    html += "</ul>"
+    html += `</select>`
 
     return html
 }

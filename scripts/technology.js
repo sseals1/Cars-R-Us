@@ -1,28 +1,29 @@
-import { getTechnology } from "./database.js"
+import { getTechnology,setTechnology } from "./database.js"
 
 const technology = getTechnology()
 
 document.addEventListener(
     "change",
-    (event) => {
-        if (event.target.name === "technology") {
-            window.alert(`You've chose ${technology.name} for your primary color`)
+    (changeEvent) => {
+        if (changeEvent.target.id === "technology") {
+            setTechnology(parseInt(changeEvent.target.value))
         }
     }
 )
 
 export const technologyFunction = () => {
-    let html = "<ul>"
+    let html = `<select id="technology">`
+    html += `<option value="0">Select Technology...</option>`
 
     // Use .map() for converting objects to <li> elements
-    const listItems = technology.map(technologyObj => {
-        return `<li>
-            <input type="radio" name="tec" value="${technologyObj.id}" /> ${technologyObj.packages}
-        </li>`
+    const newTechArray = technology.map(technologyObj => {
+        return `
+            <option value="${technologyObj.id}"> ${technologyObj.packages}</option>
+        `
     })
 
-    html += listItems.join("")
-    html += "</ul>"
+    html += newTechArray.join("")
+    html += "</select>"
 
     return html
 }

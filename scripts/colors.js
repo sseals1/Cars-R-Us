@@ -1,30 +1,40 @@
-import { getPaintColors } from "./database.js"
+import { getPaintColors, setColors } from "./database.js"
+
 
 const colors = getPaintColors()
 
 document.addEventListener(
     "change",
-    (event) => {
-        if (event.target.id === "colors") {
-            const chosenOption = chamgeEvent.target.value
-            console.log (chosenOption)
-            window.alert(`Yoou've chose for your primary color`)
+    (changeEvent) => {
+        if (changeEvent.target.id === "colors") {
+            setColors(parseInt(changeEvent.target.value))
+            // const chosenOption = chamgeEvent.target.value
+            // window.alert(`Yoou've chose for your primary color`)
+            // console.log (chosenOption)
         }
     }
 )
 
+
+
+
+
+
+
+
 export const colorsFunction = () => {
-    let html = "<ul>"
+    let html = `<select id=colors>`
+    html += `<option value="0">Select Colors...</option>`
 
     // Use .map() for converting objects to <li> elements
-    const listItems = colors.map(colors => {
+    const colorItems = colors.map(colorsObj => {
         return `<li>
-            <input type="radio" name="colors" value="${colors.id}" /> ${colors.name}
+            <option value="${colorsObj.id}"> ${colorsObj.name}</option>
         </li>`
     })
 
-    html += listItems.join("")
-    html += "</ul>"
+    html += colorItems.join("")
+    html += "</select>"
 
     return html
 }
